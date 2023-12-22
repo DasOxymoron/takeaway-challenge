@@ -40,3 +40,6 @@ messaging:
   external-in:
     contract:
       queue: 'contract-queue'
+springdoc:
+  api-docs:
+    path: '/api-docs'

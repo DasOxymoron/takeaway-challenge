@@ -1,0 +1,98 @@
+asyncapi: 3.0.0
+info:
+  title: Employee-Async API
+  version: 1.0.0
+  description: >
+    Provides Change Data Capture Events on Employees:
+
+    * An Employee has been created
+    * An Employee has been updated
+    * An employee has been deleted
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+defaultContentType: application/json
+
+channels:
+  employeeAction:
+    address: employees-queue
+    messages:
+      employeeCreated:
+        $ref: '#/components/messages/employeeCreated'
+      employeeUpdated:
+        $ref: '#/components/messages/employeeUpdated'
+      employeeDeleted:
+        $ref: '#/components/messages/employeeDeleted'
+    description: contains all CDC events for employees which can be subscribed in employees-queue
+components:
+  messages:
+    employeeCreated:
+      name: employeeCreated
+      title: Employee Created
+      summary: Thrown as soon as an employee gets created
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/employeeCreatedPayload'
+    employeeUpdated:
+      name: employeeUpdated
+      title: Employee Updated
+      summary: Thrown as soon as an employee gets updated
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/employeeUpdatedPayload'
+    employeeDeleted:
+      name: employeeDeleted
+      title: Employee Deleted
+      summary: Thrown as soon as an employee gets deleted
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/employeeDeletedPayload'
+  schemas:
+    employeeCreatedPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+          description: Identifier of the new employee
+        type:
+          type: string
+          description: Type identifier for this event. Will be CREATED for EmployeeCreated
+        firstName:
+          type: string
+          description: First Name of the employee created
+        lastName:
+          type: string
+          description: Last Name of the employee created
+        email:
+          type: string
+          description: email of the new employee
+        hobbies:
+          type: array
+          description: List of hobbies the employee has
+    employeeUpdatedPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+          description: Identifier of the  employee
+        type:
+          type: string
+          description: Type identifier for this event. Will be UPDATED for EmployeeCreated
+        lastName:
+          type: string
+          description: Last Name of the employee
+        email:
+          type: string
+          description: email of the employee
+        hobbies:
+          type: array
+          description: List of hobbies the employee has
+    employeeDeletedPayload:
+      type: object
+      properties:
+        id:
+          type: string
+          format: UUID
+          description: Identifier of the new employee

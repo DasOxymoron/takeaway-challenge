@@ -1,0 +1,304 @@
+openapi: 3.0.1
+info:
+  title: Employee REST API
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Local server URI
+paths:
+  /api/employees/{id}:
+    get:
+      operationId: getById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/EmployeeDto'
+    put:
+      operationId: update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeUpdateDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EmployeeDto'
+        "400":
+          description: ERROR
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/constraintViolationError'
+        "4XX":
+          description: Error
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/error'
+    delete:
+      operationId: delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: ERROR
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/constraintViolationError'
+        "4XX":
+          description: Error
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/error'
+  /api/employees:
+    get:
+      operationId: getAll
+      parameters:
+        - name: pageable
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Pageable'
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageEmployeeDto'
+    post:
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeCreationDto'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/EmployeeDto'
+        "400":
+          description: ERROR
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/constraintViolationError'
+        "4XX":
+          description: Error
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/error'
+components:
+  schemas:
+    EmployeeUpdateDto:
+      required:
+        - email
+        - hobbies
+        - lastName
+      type: object
+      properties:
+        lastName:
+          type: string
+        email:
+          type: string
+        hobbies:
+          type: array
+          items:
+            type: string
+    EmployeeDto:
+      required:
+        - birthday
+        - email
+        - fullName
+        - hobbies
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        fullName:
+          $ref: '#/components/schemas/FullNameDto'
+        email:
+          type: string
+        hobbies:
+          type: array
+          items:
+            type: string
+        birthday:
+          type: string
+          format: date
+    FullNameDto:
+      required:
+        - firstName
+        - lastName
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+    EmployeeCreationDto:
+      required:
+        - birthday
+        - email
+        - fullName
+        - hobbies
+      type: object
+      properties:
+        fullName:
+          $ref: '#/components/schemas/FullNameDto'
+        email:
+          type: string
+        hobbies:
+          type: array
+          items:
+            type: string
+        birthday:
+          type: string
+          format: date
+    Pageable:
+      type: object
+      properties:
+        page:
+          minimum: 0
+          type: integer
+          format: int32
+        size:
+          minimum: 1
+          type: integer
+          format: int32
+        sort:
+          type: array
+          items:
+            type: string
+    PageEmployeeDto:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        first:
+          type: boolean
+        last:
+          type: boolean
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployeeDto'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        numberOfElements:
+          type: integer
+          format: int32
+        empty:
+          type: boolean
+    PageableObject:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        paged:
+          type: boolean
+        unpaged:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+    SortObject:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        unsorted:
+          type: boolean
+        sorted:
+          type: boolean
+    error:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the error
+        status:
+          type: string
+          description: status of the error e.g. BAD REQUEST
+        detail:
+          type: string
+          description: detailed error message
+    constraintViolationError:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the error
+        status:
+          type: string
+          description: status of the error
+        violations:
+          type: array
+          description: Detailed description of the validation errors
+          items:
+            $ref: '#/components/schemas/constraintViolation'
+    constraintViolation:
+      type: object
+      properties:
+        field:
+          type: string
+          description: Property causing the violation
+        message:
+          type: string
+          description: Exact violation description

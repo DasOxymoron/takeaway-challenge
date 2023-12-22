@@ -4,6 +4,9 @@
 !src/**
 !init
 !init/**
+!api-docs
+!api-docs/**
+!Task.pdf
 !docker-compose.yml
 !mvnw
 !mvnw.cmd
