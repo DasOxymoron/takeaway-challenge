@@ -2,6 +2,9 @@
 !.gitignore
 !src/
 !src/**
+!init
+!init/**
+!docker-compose.yml
 !mvnw
 !mvnw.cmd
 !pom.xml
