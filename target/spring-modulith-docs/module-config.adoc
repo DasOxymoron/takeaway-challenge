@@ -1,8 +1,0 @@
-[%autowidth.stretch, cols="h,a"]
-|===
-|Base package
-|`de.uko.takeaway.config`
-|Spring components
-|* `d.u.t.c.ConfigurationPropertiesConfig`
-* `d.u.t.c.SchedulerConfiguration`
-|===
