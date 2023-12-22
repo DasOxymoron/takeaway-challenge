@@ -1,0 +1,21 @@
+@startuml
+title TakeawayApplication
+
+top to bottom direction
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container_Boundary("TakeawayApplication.TakeawayApplication_boundary", "TakeawayApplication", $tags="") {
+  Component(TakeawayApplication.TakeawayApplication.Domain, "Domain", "Module", "", $tags="")
+  Component(TakeawayApplication.TakeawayApplication.Persistence, "Persistence", "Module", "", $tags="")
+  Component(TakeawayApplication.TakeawayApplication.Api, "Api", "Module", "", $tags="")
+}
+
+Rel_D(TakeawayApplication.TakeawayApplication.Persistence, TakeawayApplication.TakeawayApplication.Api, "depends on", $tags="")
+Rel_D(TakeawayApplication.TakeawayApplication.Api, TakeawayApplication.TakeawayApplication.Domain, "uses", $tags="")
+Rel_D(TakeawayApplication.TakeawayApplication.Persistence, TakeawayApplication.TakeawayApplication.Domain, "depends on", $tags="")
+
+SHOW_LEGEND(true)
+@enduml

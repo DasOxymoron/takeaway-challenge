@@ -1,0 +1,9 @@
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`de.uko.takeaway.persistence`
+|Spring components
+|_Services_
+
+* `d.u.t.p.messaging.MessagingGateway` (via `d.u.t.p.messaging.RabbitMessagingGateway`)
+|===

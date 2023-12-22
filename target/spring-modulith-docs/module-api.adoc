@@ -1,0 +1,9 @@
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`de.uko.takeaway.api`
+|Bean references
+|* `d.u.t.d.service.EmployeeService` (in Domain)
+* `d.u.t.d.service.CreateEmployeeUseCase` (in Domain)
+* `d.u.t.d.service.EmployeeUpdateUseCase` (in Domain)
+|===

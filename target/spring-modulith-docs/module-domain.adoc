@@ -1,0 +1,5 @@
+[%autowidth.stretch, cols="h,a"]
+|===
+|Base package
+|`de.uko.takeaway.domain`
+|===
