@@ -1,0 +1,8 @@
+/**
+!.gitignore
+!src/
+!src/**
+!mvnw
+!mvnw.cmd
+!pom.xml
+!README.md
