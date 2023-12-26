@@ -1,4 +1,4 @@
-package de.uko.takeaway.api.config;
+package de.uko.takeaway.api.rest.controller;
 
 import de.uko.takeaway.domain.exception.NotFoundException;
 import java.net.URI;

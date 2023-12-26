@@ -1,7 +1,7 @@
 package de.uko.takeaway.domain.service;
 
 import de.uko.takeaway.domain.domain.Employee;
-import de.uko.takeaway.domain.port.CreateEmployeeAsyncMessenger;
+import de.uko.takeaway.domain.port.CreateEmployeeAsyncPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 public class CreateEmployeeUseCase {
 
     private final EmployeeService employeeService;
-    private final CreateEmployeeAsyncMessenger createEmployeeAsyncMessenger;
+    private final CreateEmployeeAsyncPort createEmployeeAsyncPort;
 
     public Employee create(Employee employee) {
         checkForDuplicateEmail(employee);
         Employee createdEmployee = employeeService.push(employee);
-        createEmployeeAsyncMessenger.sendCreateEmployeeMessage(createdEmployee);
+        createEmployeeAsyncPort.sendCreateEmployeeMessage(createdEmployee);
         return createdEmployee;
     }
 

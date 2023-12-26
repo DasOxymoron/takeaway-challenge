@@ -7,9 +7,7 @@ import static org.mockito.Mockito.verify;
 import de.uko.takeaway.domain.domain.Employee;
 import de.uko.takeaway.domain.domain.EmployeeUpdateAble;
 import de.uko.takeaway.domain.domain.Name;
-import de.uko.takeaway.domain.port.UpdateEmployeeAsyncMessenger;
-import de.uko.takeaway.domain.service.EmployeeService;
-import de.uko.takeaway.domain.service.EmployeeUpdateUseCase;
+import de.uko.takeaway.domain.port.UpdateEmployeeAsyncPort;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -30,7 +28,7 @@ class EmployeeUpdateUseCaseTest {
     @Mock
     private EmployeeService employeeService;
     @Mock
-    private UpdateEmployeeAsyncMessenger updateEmployeeAsyncMessenger;
+    private UpdateEmployeeAsyncPort updateEmployeeAsyncPort;
     @InjectMocks
     private EmployeeUpdateUseCase employeeUpdateUseCase;
 
@@ -61,7 +59,7 @@ class EmployeeUpdateUseCaseTest {
         verify(employee).setEmail(EMAIL);
         verify(employee).setHobbies(HOBBY);
         verify(name).setLastName(LAST_NAME);
-        verify(updateEmployeeAsyncMessenger).sendUpdateEmployeeMessage(updated);
+        verify(updateEmployeeAsyncPort).sendUpdateEmployeeMessage(updated);
     }
 
     @Test
@@ -80,7 +78,7 @@ class EmployeeUpdateUseCaseTest {
         verify(employee).setEmail(EMAIL);
         verify(employee).setHobbies(HOBBY);
         verify(name).setLastName(LAST_NAME);
-        verify(updateEmployeeAsyncMessenger).sendUpdateEmployeeMessage(updated);
+        verify(updateEmployeeAsyncPort).sendUpdateEmployeeMessage(updated);
 
     }
 }

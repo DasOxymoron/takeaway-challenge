@@ -6,7 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import de.uko.takeaway.domain.domain.Employee;
-import de.uko.takeaway.domain.port.CreateEmployeeAsyncMessenger;
+import de.uko.takeaway.domain.port.CreateEmployeeAsyncPort;
 import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ class CreateEmployeeUseCaseTest {
     @Mock
     private EmployeeService employeeService;
     @Mock
-    private CreateEmployeeAsyncMessenger createEmployeeAsyncMessenger;
+    private CreateEmployeeAsyncPort createEmployeeAsyncPort;
     @InjectMocks
     private CreateEmployeeUseCase createEmployeeUseCase;
 
@@ -47,6 +47,6 @@ class CreateEmployeeUseCaseTest {
         // then
         assertEquals(employee, employeeMock);
         verify(employeeService).push(employeeMock);
-        verify(createEmployeeAsyncMessenger).sendCreateEmployeeMessage(employee);
+        verify(createEmployeeAsyncPort).sendCreateEmployeeMessage(employee);
     }
 }

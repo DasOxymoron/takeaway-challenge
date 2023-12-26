@@ -1,4 +1,4 @@
-package de.uko.takeaway.api.messaging.dto;
+package de.uko.takeaway.api.messaging.event;
 
 import static org.assertj.core.api.Assertions.*;
 

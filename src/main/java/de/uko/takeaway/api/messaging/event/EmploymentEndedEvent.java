@@ -1,4 +1,4 @@
-package de.uko.takeaway.api.messaging.dto;
+package de.uko.takeaway.api.messaging.event;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDate;

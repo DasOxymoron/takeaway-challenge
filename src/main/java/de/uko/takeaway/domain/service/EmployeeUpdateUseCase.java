@@ -2,7 +2,7 @@ package de.uko.takeaway.domain.service;
 
 import de.uko.takeaway.domain.domain.Employee;
 import de.uko.takeaway.domain.domain.EmployeeUpdateAble;
-import de.uko.takeaway.domain.port.UpdateEmployeeAsyncMessenger;
+import de.uko.takeaway.domain.port.UpdateEmployeeAsyncPort;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class EmployeeUpdateUseCase {
 
     private final EmployeeService employeeService;
-    private final UpdateEmployeeAsyncMessenger updateEmployeeAsyncMessenger;
+    private final UpdateEmployeeAsyncPort updateEmployeeAsyncPort;
 
     public Employee update(UUID id, EmployeeUpdateAble updateRequest) {
         checkDuplicateEmail(id, updateRequest);
@@ -22,7 +22,7 @@ public class EmployeeUpdateUseCase {
         employee.setHobbies(updateRequest.getHobbies());
 
         Employee updated = employeeService.push(employee);
-        updateEmployeeAsyncMessenger.sendUpdateEmployeeMessage(updated);
+        updateEmployeeAsyncPort.sendUpdateEmployeeMessage(updated);
         return updated;
     }
 

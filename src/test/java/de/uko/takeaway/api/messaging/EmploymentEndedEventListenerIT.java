@@ -4,7 +4,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.mockito.Mockito.verify;
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
-import de.uko.takeaway.api.messaging.dto.EmploymentEndedEvent;
+import de.uko.takeaway.api.messaging.event.EmploymentEndedEvent;
 import de.uko.takeaway.persistence.service.EmployeePersistenceService;
 import de.uko.takeaway.utils.IntegrationTest;
 import java.time.LocalDate;

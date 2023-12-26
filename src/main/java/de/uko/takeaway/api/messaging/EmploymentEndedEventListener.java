@@ -1,6 +1,6 @@
 package de.uko.takeaway.api.messaging;
 
-import de.uko.takeaway.api.messaging.dto.EmploymentEndedEvent;
+import de.uko.takeaway.api.messaging.event.EmploymentEndedEvent;
 import de.uko.takeaway.domain.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;

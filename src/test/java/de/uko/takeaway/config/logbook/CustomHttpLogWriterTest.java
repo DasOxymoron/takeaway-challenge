@@ -1,7 +1,7 @@
 package de.uko.takeaway.config.logbook;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import de.uko.takeaway.api.config.logbook.CustomHttpLogWriter;
+import de.uko.takeaway.api.logbook.CustomHttpLogWriter;
 import de.uko.takeaway.config.logbook.support.MockCorrelationIdGenerator;
 import de.uko.takeaway.config.logbook.support.TestController;
 import de.uko.takeaway.utils.MemoryAppender;
