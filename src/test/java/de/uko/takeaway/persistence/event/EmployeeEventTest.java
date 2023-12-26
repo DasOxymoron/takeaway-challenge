@@ -25,14 +25,22 @@ class EmployeeEventTest {
 
         JsonAssertions.assertThat(json)
             .isJson()
-            .equals(
-                "{\"type\":\"DELETED\",\"id\":\"7625edec-e137-43a8-a84b-9f9738c46cc4\"}");
+            .equals(/* language=JSON */ """
+                {
+                    "type": "DELETED",
+                    "id": "7625edec-e137-43a8-a84b-9f9738c46cc4"
+                }""");
     }
 
     @Test
     @SneakyThrows
     void shouldDeserializeEmployeeDeletedEvent() {
-        String json = "{\"type\":\"DELETED\",\"id\":\"7625edec-e137-43a8-a84b-9f9738c46cc4\",\"eventTime\":\"-999999999-04-11T00:00:00+18:00\"}";
+        String json =  /* language=JSON */ """
+            {
+                "type": "DELETED",
+                "id": "7625edec-e137-43a8-a84b-9f9738c46cc4",
+                "eventTime": "-999999999-04-11T00:00:00+18:00"
+            }""";
 
         EmployeeEvent employeeEvent = objectMapper.readValue(json, EmployeeEvent.class);
 
@@ -53,13 +61,35 @@ class EmployeeEventTest {
         JsonAssertions.assertThat(json)
             .isJson()
             .equals(
-                "{\"type\":\"CREATED\",\"id\":\"7625edec-e137-43a8-a84b-9f9738c46cc4\",\"firstName\":\"first-name\",\"lastName\":\"last-name\",\"email\":\"email\",\"hobbies\":[\"hobby\"]}\n");
+                /* language=JSON */ """
+                    {
+                        "type": "CREATED",
+                        "id": "7625edec-e137-43a8-a84b-9f9738c46cc4",
+                        "firstName": "first-name",
+                        "lastName": "last-name",
+                        "email": "email",
+                        "hobbies": [
+                            "hobby"
+                        ]
+                    }
+                    """);
     }
 
     @Test
     @SneakyThrows
     void shouldDeserializeEmployeeCreationEvent() {
-        String json = "{\"type\":\"CREATED\",\"id\":\"7625edec-e137-43a8-a84b-9f9738c46cc4\",\"firstName\":\"first-name\",\"lastName\":\"last-name\",\"email\":\"email\",\"hobbies\":[\"hobby\"]}\n";
+        String json =  /* language=JSON */ """
+            {
+                "type": "CREATED",
+                "id": "7625edec-e137-43a8-a84b-9f9738c46cc4",
+                "firstName": "first-name",
+                "lastName": "last-name",
+                "email": "email",
+                "hobbies": [
+                    "hobby"
+                ]
+            }
+            """;
 
         EmployeeEvent employeeEvent = objectMapper.readValue(json, EmployeeEvent.class);
 
@@ -85,13 +115,33 @@ class EmployeeEventTest {
         JsonAssertions.assertThat(json)
             .isJson()
             .equals(
-                "{\"type\":\"UPDATED\",\"id\":\"7625edec-e137-43a8-a84b-9f9738c46cc4\",\"lastName\":\"last-name\",\"email\":\"email\",\"hobbies\":[\"hobby\"]}\n");
+                /* language=JSON */ """
+                    {
+                        "type": "UPDATED",
+                        "id": "7625edec-e137-43a8-a84b-9f9738c46cc4",
+                        "lastName": "last-name",
+                        "email": "email",
+                        "hobbies": [
+                            "hobby"
+                        ]
+                    }
+                    """);
     }
 
     @Test
     @SneakyThrows
     void shouldDeserializeEmployeeUpdateEvent() {
-        String json = "{\"type\":\"UPDATED\",\"id\":\"7625edec-e137-43a8-a84b-9f9738c46cc4\",\"lastName\":\"last-name\",\"email\":\"email\",\"hobbies\":[\"hobby\"]}\n";
+        String json =  /* language=JSON */ """
+            {
+                "type": "UPDATED",
+                "id": "7625edec-e137-43a8-a84b-9f9738c46cc4",
+                "lastName": "last-name",
+                "email": "email",
+                "hobbies": [
+                    "hobby"
+                ]
+            }
+            """;
         EmployeeEvent employeeEvent = objectMapper.readValue(json, EmployeeEvent.class);
 
         assertThat(employeeEvent).isEqualTo(new EmployeeUpdatedEvent(

@@ -91,7 +91,7 @@ class EmployeeControllerTest {
         void shouldValidateFUllNameOnCreation() {
             mockMvc.perform(MockMvcRequestBuilders.post("/api/employees")
                     .contentType("application/json")
-                    .content("""
+                    .content(/* language=JSON */ """
                         {
                             "fullName": {
                                 "firstName": null,
@@ -117,7 +117,7 @@ class EmployeeControllerTest {
         void shouldValidateEmail() {
             mockMvc.perform(MockMvcRequestBuilders.post("/api/employees")
                     .contentType("application/json")
-                    .content("""
+                    .content(/* language=JSON */ """
                         {
                             "fullName": {
                                 "firstName": "firstName",
@@ -154,7 +154,7 @@ class EmployeeControllerTest {
 
             mockMvc.perform(MockMvcRequestBuilders.post("/api/employees")
                     .contentType("application/json")
-                    .content("""
+                    .content(/* language=JSON */ """
                         {
                             "fullName": {
                                 "firstName": "firstName",

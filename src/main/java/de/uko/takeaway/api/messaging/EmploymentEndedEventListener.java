@@ -18,13 +18,13 @@ public class EmploymentEndedEventListener {
 
     @RabbitListener(queues = "${messaging.external-in.contract.queue}")
     public void handleContractEvent(EmploymentEndedEvent event) {
-        /**
-         * Bypassing domain layer since contract termination is no real business logic of the current domain
-         * Nevertheless from my perspective employee and contracts are close to each other, so I would move
-         * everything together which would produce a service which would be better.
+        /*
+          Bypassing domain layer since contract termination is no real business logic of the current domain
+          Nevertheless from my perspective employee and contracts are close to each other, so I would move
+          everything together which would produce a service which would be better.
          */
 
-        handler.configureLastDayOfWork(event.getEmployeeId(), event.getLastDayAtWork());
+        handler.configureLastDayOfWork(event.employeeId(), event.lastDayAtWork());
     }
 
     @Scheduled(fixedDelayString = "${scheduled.employees-clean-job}")

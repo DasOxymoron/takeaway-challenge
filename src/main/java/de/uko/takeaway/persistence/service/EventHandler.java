@@ -9,8 +9,6 @@ import de.uko.takeaway.persistence.event.EmployeeEvent.EmployeeCreatedEvent;
 import de.uko.takeaway.persistence.event.EmployeeEvent.EmployeeDeletedEvent;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
-import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service

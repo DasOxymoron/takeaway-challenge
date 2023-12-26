@@ -2,10 +2,7 @@ package de.uko.takeaway.domain.service;
 
 import de.uko.takeaway.domain.domain.Employee;
 import de.uko.takeaway.domain.domain.EmployeeUpdateAble;
-import de.uko.takeaway.domain.exception.EmployeeNotFoundException;
 import de.uko.takeaway.domain.port.UpdateEmployeeAsyncMessenger;
-import de.uko.takeaway.domain.service.EmployeeService;
-import jakarta.persistence.EntityNotFoundException;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

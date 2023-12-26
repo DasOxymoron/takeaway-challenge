@@ -51,8 +51,12 @@ the following configurations are adjustable:
 - Testing can be done entirely isolated. All you need is a docker environment, the rest should be pulled up from the test setup automatically. 
 ### Downstream messaging
 - In order to guarantee at least once delivery, I am using RabbitMQ with a dedicated outbox pattern. 
-- Events will be published asynchronously via a scheduled job. 
+- Events will be published asynchronously via a scheduled job.
+- I was thinking about an Transactional Event Listener in order to trigger event population earlier but from my perspective it will not provide much benefits: In case something goes wrong the event still will need to stay in DB and on next event I would need to fetch it again. This would be fancy to do so but does not bring much value. 
 ### Limitations
 - I did not implement any security features. Usually I would use Spring-Security for this purpose but did not want to ship it with a dedicated auth server
 - I did not add any @Queue beans for the RabbitMQ Listener since I expect creation of queues done in an external devops repository e.g. done by Terraform
 - The application.yaml is designed for a local run. However you can change the configuration by adjusting the variables according to the spring properties chain.  
+- I did think about a multimodule maven setup but this would be an overkill for such task at this time.
+### Framework choices:
+- Liquibase: I am using Liquibase over Flyway because its idempotent regarding the underlying database. 
